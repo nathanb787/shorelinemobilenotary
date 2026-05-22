@@ -798,6 +798,71 @@
   </script>
 
   <script>
+    // Mobile-only collapsible sections (services + service areas).
+    // Desktop (>= 769px) behavior is unchanged.
+    (function () {
+      var mq = window.matchMedia('(max-width: 768px)');
+      var serviceCards = document.querySelectorAll('.service-card');
+      var areaColumns = document.querySelectorAll('.area-column');
+      var all = [].concat(Array.prototype.slice.call(serviceCards),
+                          Array.prototype.slice.call(areaColumns));
+
+      // Inject chevron once per card (kept hidden on desktop via CSS).
+      all.forEach(function (el) {
+        if (el.querySelector(':scope > .collapse-chevron')) return;
+        var chev = document.createElement('span');
+        chev.className = 'collapse-chevron';
+        chev.setAttribute('aria-hidden', 'true');
+        chev.innerHTML = '<svg viewBox="0 0 12 7" width="12" height="7"><path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+        el.appendChild(chev);
+      });
+
+      function applyState() {
+        var mobile = mq.matches;
+        all.forEach(function (el) {
+          if (mobile) {
+            // Default to collapsed on mobile unless user has toggled it
+            if (el.dataset.userToggled !== '1') el.classList.add('is-collapsed');
+          } else {
+            el.classList.remove('is-collapsed');
+          }
+        });
+      }
+
+      function onCardClick(e) {
+        if (!mq.matches) return; // desktop: anchor / div behaves normally
+        // If user clicked the CTA (when expanded), let the link navigate.
+        if (e.target.closest('.service-cta')) return;
+        e.preventDefault();
+        var el = e.currentTarget;
+        el.dataset.userToggled = '1';
+        el.classList.toggle('is-collapsed');
+      }
+
+      all.forEach(function (el) {
+        el.addEventListener('click', onCardClick);
+        // Accessibility: allow Enter/Space when card has focus on mobile
+        if (el.tagName === 'DIV') {
+          el.setAttribute('role', 'button');
+          el.setAttribute('tabindex', '0');
+          el.addEventListener('keydown', function (e) {
+            if (!mq.matches) return;
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              el.dataset.userToggled = '1';
+              el.classList.toggle('is-collapsed');
+            }
+          });
+        }
+      });
+
+      applyState();
+      if (mq.addEventListener) mq.addEventListener('change', applyState);
+      else mq.addListener(applyState);
+    })();
+  </script>
+
+  <script>
     // Contact form: submit to Formspree via AJAX, keep visitor on the page.
     (function () {
       var form = document.getElementById('contact-form');
