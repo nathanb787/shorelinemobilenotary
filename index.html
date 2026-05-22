@@ -242,37 +242,43 @@
         <a href="#contact" class="service-card">
           <div class="service-icon">&#127968;</div>
           <h3>Loan Signings</h3>
-          <p>Purchase closings, refinances, HELOCs, reverse mortgages, seller packages, and modifications. I know every document inside and out &mdash; no delays, no errors, no callbacks.</p>
+          <p class="service-desc service-desc-full">Purchase closings, refinances, HELOCs, reverse mortgages, seller packages, and modifications. I know every document inside and out &mdash; no delays, no errors, no callbacks.</p>
+          <p class="service-desc service-desc-short">Purchases, refis, HELOCs, reverses, seller packages &mdash; every package, every time.</p>
           <span class="service-cta">Get in Touch &rarr;</span>
         </a>
         <a href="#contact" class="service-card">
           <div class="service-icon">&#128196;</div>
           <h3>General Notarization</h3>
-          <p>Power of attorney, deeds, trusts, wills, affidavits, and any document requiring notarization. I come to you &mdash; home, office, hospital, or wherever you need me.</p>
+          <p class="service-desc service-desc-full">Power of attorney, deeds, trusts, wills, affidavits, and any document requiring notarization. I come to you &mdash; home, office, hospital, or wherever you need me.</p>
+          <p class="service-desc service-desc-short">POAs, deeds, trusts, wills, affidavits &mdash; I come to you, anywhere.</p>
           <span class="service-cta">Get in Touch &rarr;</span>
         </a>
         <a href="#contact" class="service-card">
           <div class="service-icon">&#128666;</div>
           <h3>Mobile &amp; Flexible</h3>
-          <p>I travel across the entire greater Seattle metro. Need me at your office at 7 AM? Done. Evening signing in Bellevue? No problem. I work around your schedule.</p>
+          <p class="service-desc service-desc-full">I travel across the entire greater Seattle metro. Need me at your office at 7 AM? Done. Evening signing in Bellevue? No problem. I work around your schedule.</p>
+          <p class="service-desc service-desc-short">Greater Seattle, on your schedule &mdash; early mornings or evenings.</p>
           <span class="service-cta">Get in Touch &rarr;</span>
         </a>
         <a href="#contact" class="service-card">
           <div class="service-icon">&#9889;</div>
           <h3>Same-Day Available</h3>
-          <p>Last-minute signing fell through? Your usual notary canceled? I can step in same-day across the greater Seattle area. One call and I'm on my way.</p>
+          <p class="service-desc service-desc-full">Last-minute signing fell through? Your usual notary canceled? I can step in same-day across the greater Seattle area. One call and I'm on my way.</p>
+          <p class="service-desc service-desc-short">Last-minute cancellation? One call &mdash; I'm on my way.</p>
           <span class="service-cta">Get in Touch &rarr;</span>
         </a>
         <a href="#contact" class="service-card">
           <div class="service-icon">&#128424;</div>
           <h3>In-House Printing</h3>
-          <p>I have a commercial-grade Konica Minolta dual-tray printer. I can print your full loan packages &mdash; 150 to 200+ pages &mdash; at my office, ready to go. Or I'll pick up docs from yours.</p>
+          <p class="service-desc service-desc-full">I have a commercial-grade Konica Minolta dual-tray printer. I can print your full loan packages &mdash; 150 to 200+ pages &mdash; at my office, ready to go. Or I'll pick up docs from yours.</p>
+          <p class="service-desc service-desc-short">Full loan packages printed and ready &mdash; 150 to 200+ pages.</p>
           <span class="service-cta">Get in Touch &rarr;</span>
         </a>
         <a href="#contact" class="service-card">
           <div class="service-icon">&#128274;</div>
           <h3>Fully Insured &amp; Compliant</h3>
-          <p>$1 million errors &amp; omissions policy through BiBerk. Background checked. Bonded. Washington State commissioned. Your signers are in safe hands.</p>
+          <p class="service-desc service-desc-full">$1 million errors &amp; omissions policy through BiBerk. Background checked. Bonded. Washington State commissioned. Your signers are in safe hands.</p>
+          <p class="service-desc service-desc-short">$1M E&amp;O, bonded, background checked, WA commissioned.</p>
           <span class="service-cta">Get in Touch &rarr;</span>
         </a>
       </div>
@@ -601,7 +607,11 @@
           </div>
         </div>
 
-        <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <form class="contact-form" id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST"
+              onsubmit="event.preventDefault(); var el=document.getElementById('contact-fallback'); el.style.display='block'; el.scrollIntoView({behavior:'smooth',block:'center'}); return false;">
+          <div id="contact-fallback" style="display:none; padding:18px 22px; margin-bottom:20px; background:rgba(180,140,80,0.08); border:1px solid var(--gold-dim); color:var(--ivory); font-size:0.95rem; line-height:1.6; border-radius:2px;">
+            Thanks for reaching out. The web form is being upgraded right now &mdash; please call or text me directly at <a href="tel:+19495326509" style="color:var(--gold-light); text-decoration:underline;">(949)&nbsp;532-6509</a> or email <a href="mailto:nathan@shorelinemobilenotary.com" style="color:var(--gold-light); text-decoration:underline;">nathan@shorelinemobilenotary.com</a> and I&rsquo;ll get right back to you.
+          </div>
           <div class="form-group">
             <label for="name">Name</label>
             <input type="text" id="name" name="name" required placeholder="Your name">

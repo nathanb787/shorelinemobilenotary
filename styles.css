@@ -525,7 +525,7 @@ section h2 {
 .section-sub {
   text-align: center;
   color: var(--text-muted);
-  font-size: 1.05rem;
+  font-size: 0.95rem;
   max-width: 680px;
   margin: 0 auto 72px;
   font-weight: 300;
@@ -543,7 +543,7 @@ section h2 {
 .partners-grid {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  gap: 20px;
+  gap: 14px;
   align-items: stretch;
 }
 
@@ -553,8 +553,8 @@ section h2 {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 28px 20px;
-  min-height: 130px;
+  padding: 18px 14px;
+  min-height: 88px;
   transition: all var(--transition);
   text-align: center;
   position: relative;
@@ -603,7 +603,7 @@ section h2 {
 /* Brand-flavored typography for each logo */
 .logo-firstam {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 1.05rem;
+  font-size: 0.95rem;
   font-weight: 500;
   letter-spacing: 0.01em;
 }
@@ -614,7 +614,7 @@ section h2 {
 
 .logo-clearedge {
   font-family: 'Inter', sans-serif;
-  font-size: 1.05rem;
+  font-size: 0.95rem;
   font-weight: 400;
   letter-spacing: -0.01em;
 }
@@ -628,7 +628,7 @@ section h2 {
 
 .logo-rainier {
   font-family: 'Inter', sans-serif;
-  font-size: 1.05rem;
+  font-size: 0.95rem;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -640,7 +640,7 @@ section h2 {
 
 .logo-chicago {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 1.05rem;
+  font-size: 0.95rem;
   font-weight: 600;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -697,7 +697,7 @@ section h2 {
 
 .service-card {
   background: var(--black-soft);
-  padding: 56px 40px;
+  padding: 42px 32px;
   transition: all var(--transition);
   position: relative;
   display: block;
@@ -705,6 +705,8 @@ section h2 {
   text-decoration: none;
   cursor: pointer;
 }
+
+.service-desc-short { display: none; }
 
 .service-card:hover {
   background: var(--charcoal);
@@ -749,8 +751,8 @@ section h2 {
 }
 
 .service-icon {
-  font-size: 1.8rem;
-  margin-bottom: 24px;
+  font-size: 1.6rem;
+  margin-bottom: 18px;
   color: var(--gold);
   filter: grayscale(0.2);
 }
@@ -942,7 +944,7 @@ section h2 {
 
 .testimonial-card blockquote p {
   color: var(--text);
-  font-size: 1.05rem;
+  font-size: 0.95rem;
   line-height: 1.8;
   font-style: italic;
   margin-bottom: 28px;
@@ -986,7 +988,7 @@ section h2 {
 
 .area-column h3 {
   color: var(--gold-light);
-  font-size: 1.05rem;
+  font-size: 0.95rem;
   margin-bottom: 20px;
   padding-bottom: 14px;
   border-bottom: 1px solid var(--line);
@@ -1018,7 +1020,7 @@ section h2 {
   color: var(--text-dim);
   font-style: italic;
   font-family: 'Cormorant Garamond', serif;
-  font-size: 1.05rem;
+  font-size: 0.95rem;
 }
 
 /* --- CTA Banner --- */
@@ -1097,7 +1099,7 @@ section h2 {
 
 .contact-item p {
   color: var(--text);
-  font-size: 1.05rem;
+  font-size: 0.95rem;
   line-height: 1.7;
   font-weight: 300;
 }
@@ -1539,6 +1541,34 @@ section h2 {
 
   .services-grid {
     grid-template-columns: 1fr;
+  }
+
+  .service-card {
+    padding: 28px 22px;
+  }
+
+  .service-icon {
+    font-size: 1.4rem;
+    margin-bottom: 12px;
+  }
+
+  .service-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 8px;
+  }
+
+  .service-desc-full { display: none; }
+  .service-desc-short {
+    display: block;
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  .service-cta {
+    margin-top: 14px;
+    opacity: 1;
+    transform: none;
+    font-size: 0.65rem;
   }
 
   .partners-grid {
