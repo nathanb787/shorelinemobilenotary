@@ -1123,6 +1123,37 @@ section h2 {
   border: 1px solid var(--line);
 }
 
+.contact-status {
+  display: none;
+}
+
+.contact-status--success,
+.contact-status--error {
+  display: block;
+  padding: 18px 22px;
+  margin-bottom: 24px;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  border-radius: 2px;
+}
+
+.contact-status--success {
+  background: rgba(180, 140, 80, 0.08);
+  border: 1px solid var(--gold-dim);
+  color: var(--ivory);
+}
+
+.contact-status--error {
+  background: rgba(180, 60, 60, 0.08);
+  border: 1px solid rgba(220, 100, 100, 0.45);
+  color: var(--ivory);
+}
+
+.contact-status a {
+  color: var(--gold-light);
+  text-decoration: underline;
+}
+
 .form-group {
   margin-bottom: 24px;
 }
