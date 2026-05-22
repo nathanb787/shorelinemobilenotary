@@ -831,10 +831,24 @@
 
       function onCardClick(e) {
         if (!mq.matches) return; // desktop: anchor / div behaves normally
-        // If user clicked the CTA (when expanded), let the link navigate.
-        if (e.target.closest('.service-cta')) return;
-        e.preventDefault();
         var el = e.currentTarget;
+        var isService = el.classList.contains('service-card');
+
+        if (isService) {
+          // Service tiles are <a href="#contact">.
+          //  - First tap (collapsed): expand to reveal description, no nav.
+          //  - Second tap (expanded): let the anchor navigate to #contact.
+          if (el.classList.contains('is-collapsed')) {
+            e.preventDefault();
+            el.dataset.userToggled = '1';
+            el.classList.remove('is-collapsed');
+          }
+          // expanded -> fall through: anchor navigates normally
+          return;
+        }
+
+        // Service area tiles are <div> — toggle freely (no nav target).
+        e.preventDefault();
         el.dataset.userToggled = '1';
         el.classList.toggle('is-collapsed');
       }
