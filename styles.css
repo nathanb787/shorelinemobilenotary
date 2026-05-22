@@ -1055,10 +1055,19 @@ section h2 {
 .area-note {
   text-align: center;
   margin-top: 56px;
-  color: var(--text-dim);
+  color: var(--text-muted);
   font-style: italic;
   font-family: 'Cormorant Garamond', serif;
-  font-size: 0.95rem;
+  font-size: 1.35rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .area-note {
+    font-size: 1.2rem;
+    margin-top: 32px;
+    padding: 0 8px;
+  }
 }
 
 /* --- CTA Banner --- */
