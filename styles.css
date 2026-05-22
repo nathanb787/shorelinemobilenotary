@@ -711,19 +711,19 @@ section h2 {
 /* Chevron hidden by default — only visible on mobile via media query */
 .collapse-chevron { display: none; }
 
-/* Back-to-top floating button (mobile only — display:flex set in media query) */
+/* Back-to-top floating button with scroll-progress ring */
 .scroll-top {
-  display: none;
+  display: flex;
   position: fixed;
-  bottom: 22px;
-  right: 18px;
-  width: 44px;
-  height: 44px;
+  bottom: 26px;
+  right: 26px;
+  width: 52px;
+  height: 52px;
   border-radius: 50%;
   background: rgba(10, 10, 10, 0.82);
   -webkit-backdrop-filter: blur(14px);
   backdrop-filter: blur(14px);
-  border: 1px solid var(--gold-dim);
+  border: none;
   color: var(--gold-light);
   align-items: center;
   justify-content: center;
@@ -734,6 +734,7 @@ section h2 {
   transform: translateY(8px);
   transition: opacity 0.25s ease, transform 0.25s ease, background 0.2s ease;
   padding: 0;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
 }
 
 .scroll-top.is-visible {
@@ -742,8 +743,47 @@ section h2 {
   transform: translateY(0);
 }
 
-.scroll-top:active {
-  background: rgba(20, 20, 20, 0.92);
+.scroll-top:hover { background: rgba(20, 20, 20, 0.92); }
+.scroll-top:active { background: rgba(28, 28, 28, 0.95); }
+
+.scroll-top-ring {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg); /* progress starts from 12 o'clock */
+  pointer-events: none;
+}
+
+.scroll-top-ring-track {
+  fill: none;
+  stroke: rgba(180, 140, 80, 0.22);
+  stroke-width: 2;
+}
+
+.scroll-top-ring-progress {
+  fill: none;
+  stroke: var(--gold-light);
+  stroke-width: 2;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.15s linear;
+}
+
+.scroll-top-arrow {
+  width: 14px;
+  height: 8px;
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 768px) {
+  .scroll-top {
+    width: 46px;
+    height: 46px;
+    bottom: 20px;
+    right: 18px;
+  }
+  .scroll-top-arrow { width: 12px; height: 7px; }
 }
 
 .service-card:hover {
@@ -1596,10 +1636,6 @@ section h2 {
 
   .section-eyebrow {
     margin-bottom: 14px;
-  }
-
-  .scroll-top {
-    display: flex;
   }
 
   .nav-toggle {
