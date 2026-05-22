@@ -711,6 +711,41 @@ section h2 {
 /* Chevron hidden by default — only visible on mobile via media query */
 .collapse-chevron { display: none; }
 
+/* Back-to-top floating button (mobile only — display:flex set in media query) */
+.scroll-top {
+  display: none;
+  position: fixed;
+  bottom: 22px;
+  right: 18px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(10, 10, 10, 0.82);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  border: 1px solid var(--gold-dim);
+  color: var(--gold-light);
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 90;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(8px);
+  transition: opacity 0.25s ease, transform 0.25s ease, background 0.2s ease;
+  padding: 0;
+}
+
+.scroll-top.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.scroll-top:active {
+  background: rgba(20, 20, 20, 0.92);
+}
+
 .service-card:hover {
   background: var(--charcoal);
   color: inherit;
@@ -1526,7 +1561,36 @@ section h2 {
 
 @media (max-width: 768px) {
   section {
-    padding: 90px 0;
+    padding: 56px 0;
+  }
+
+  .partners {
+    padding: 48px 0;
+  }
+
+  .cta-banner {
+    padding: 72px 0;
+  }
+
+  .trust-bar {
+    padding: 40px 0;
+  }
+
+  .section-sub {
+    margin-bottom: 36px;
+    font-size: 0.9rem;
+  }
+
+  section h2 {
+    margin-bottom: 14px;
+  }
+
+  .section-eyebrow {
+    margin-bottom: 14px;
+  }
+
+  .scroll-top {
+    display: flex;
   }
 
   .nav-toggle {

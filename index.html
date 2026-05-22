@@ -821,9 +821,18 @@
         var mobile = mq.matches;
         all.forEach(function (el) {
           if (mobile) {
-            // Default to collapsed on mobile unless user has toggled it
+            // On mobile: strip href so the anchor can't navigate. Stash
+            // the original target in a data attribute for the two-tap flow.
+            if (el.tagName === 'A' && el.hasAttribute('href')) {
+              el.dataset.targetHref = el.getAttribute('href');
+              el.removeAttribute('href');
+            }
             if (el.dataset.userToggled !== '1') el.classList.add('is-collapsed');
           } else {
+            // On desktop: restore href so anchor navigation works again.
+            if (el.tagName === 'A' && el.dataset.targetHref && !el.hasAttribute('href')) {
+              el.setAttribute('href', el.dataset.targetHref);
+            }
             el.classList.remove('is-collapsed');
           }
         });
@@ -835,15 +844,18 @@
         var isService = el.classList.contains('service-card');
 
         if (isService) {
-          // Service tiles are <a href="#contact">.
-          //  - First tap (collapsed): expand to reveal description, no nav.
-          //  - Second tap (expanded): let the anchor navigate to #contact.
+          //  - First tap (collapsed): expand description.
+          //  - Second tap (expanded): navigate to #contact via smooth scroll.
+          e.preventDefault();
           if (el.classList.contains('is-collapsed')) {
-            e.preventDefault();
             el.dataset.userToggled = '1';
             el.classList.remove('is-collapsed');
+          } else {
+            var href = el.dataset.targetHref || '#contact';
+            var target = document.querySelector(href);
+            if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            else window.location.hash = href;
           }
-          // expanded -> fall through: anchor navigates normally
           return;
         }
 
@@ -873,6 +885,29 @@
       applyState();
       if (mq.addEventListener) mq.addEventListener('change', applyState);
       else mq.addListener(applyState);
+    })();
+  </script>
+
+  <button class="scroll-top" id="scroll-top" type="button" aria-label="Back to top">
+    <svg viewBox="0 0 14 14" width="14" height="14" aria-hidden="true">
+      <path d="M2 9l5-5 5 5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+
+  <script>
+    // Mobile-only back-to-top floating button.
+    (function () {
+      var btn = document.getElementById('scroll-top');
+      if (!btn) return;
+      function update() {
+        if (window.scrollY > 320) btn.classList.add('is-visible');
+        else btn.classList.remove('is-visible');
+      }
+      btn.addEventListener('click', function () {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+      window.addEventListener('scroll', update, { passive: true });
+      update();
     })();
   </script>
 
