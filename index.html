@@ -764,17 +764,24 @@
       const closeBtn = document.getElementById('review-toast-close');
       if (!toast) return;
 
-      // Keep real verified reviews (Vicky, Laura) first; shuffle the rest for variety
-      const featured = reviews.slice(0, 2);
-      const rest = reviews.slice(2).sort(() => Math.random() - 0.5);
-      const order = featured.concat(rest);
-      let idx = 0;
+      // Pick a fresh random review each tick; never repeat back-to-back.
+      let lastIdx = -1;
       let cycleTimer = null;
       let active = true;
 
+      function pickNext() {
+        if (reviews.length <= 1) return reviews[0];
+        let i;
+        do {
+          i = Math.floor(Math.random() * reviews.length);
+        } while (i === lastIdx);
+        lastIdx = i;
+        return reviews[i];
+      }
+
       function showNext() {
         if (!active) return;
-        const r = order[idx % order.length];
+        const r = pickNext();
         nameEl.textContent = r.name;
         textEl.textContent = '“' + r.text + '”';
         avatarEl.textContent = r.name.charAt(0);
@@ -783,7 +790,6 @@
           toast.classList.remove('visible');
           cycleTimer = setTimeout(showNext, 2500);
         }, 8500);
-        idx++;
       }
 
       closeBtn.addEventListener('click', () => {
