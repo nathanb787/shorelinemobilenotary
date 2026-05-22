@@ -1724,20 +1724,25 @@ section h2 {
     color: var(--text-muted);
   }
 
-  /* Chevron — appears on right edge of any collapsible tile */
+  /* Chevron — dedicated tap target for expand/collapse on mobile */
   .collapse-chevron {
     position: absolute;
     top: 50%;
-    right: 22px;
-    width: 12px;
-    height: 12px;
-    margin-top: -6px;
+    right: 6px;
+    width: 40px;
+    height: 40px;
+    margin-top: -20px;
     color: var(--gold);
     display: flex;
     align-items: center;
     justify-content: center;
     transition: transform 0.3s ease, color 0.2s ease;
-    pointer-events: none; /* clicks pass through to the card itself */
+    cursor: pointer;
+  }
+
+  .collapse-chevron svg {
+    width: 14px;
+    height: 8px;
   }
 
   .service-card:not(.is-collapsed) .collapse-chevron,
@@ -1749,7 +1754,7 @@ section h2 {
   /* When not collapsed, chevron sits in the top-right rather than centered */
   .service-card:not(.is-collapsed) .collapse-chevron,
   .area-column:not(.is-collapsed) .collapse-chevron {
-    top: 24px;
+    top: 8px;
     margin-top: 0;
   }
 

@@ -842,11 +842,18 @@
         if (!mq.matches) return; // desktop: anchor / div behaves normally
         var el = e.currentTarget;
         var isService = el.classList.contains('service-card');
+        var clickedChevron = !!e.target.closest('.collapse-chevron');
 
         if (isService) {
-          //  - First tap (collapsed): expand description.
-          //  - Second tap (expanded): navigate to #contact via smooth scroll.
           e.preventDefault();
+          // Chevron is the dedicated open/close toggle in either state.
+          if (clickedChevron) {
+            el.dataset.userToggled = '1';
+            el.classList.toggle('is-collapsed');
+            return;
+          }
+          //  - First tap on body (collapsed): expand description.
+          //  - Tap on body (expanded): navigate to #contact via smooth scroll.
           if (el.classList.contains('is-collapsed')) {
             el.dataset.userToggled = '1';
             el.classList.remove('is-collapsed');
